@@ -1,23 +1,20 @@
 <!doctype html>
-<html>
-  <head>
-    <script src="/app.js"></script>
-    <link rel="stylesheet" type="text/css" href="/app.css">
-    <title>IVAИ</title>
-  </head>
-  <body ng-app="ivan">
-    <div ng-controller="timer">
-      <h1>{{ivan}}</h1>
-      <label>WOЯKOUT TIMƎ</label>
-      <input type="text" value="10:00" />
-      <label>ЯƎPS PƎR MINUTƎ</label>
-      <input type="text" value="7" />
-      <button>лифт</button>
-
-      </div>
-      <div class="progress container">
-        <div ng-class="{go: run}" class="progress bar">&nbsp;</div>
-      </div>
-    </div>
-  </body>
+<html ng-app="ivan">
+<head>
+<script src="/app.js"></script>
+<!--
+<link rel="stylesheet" type="text/css" href="/app.css">
+-->
+<title>ivaи</title>
+</head>
+<body ng-controller="timer">
+<h1>ivaи</h1>
+<form ng-submit="begin()">
+  <input type="text" ng-model="countdown" placeholder="countdown" />
+  <input type="text" ng-model="time" placeholder="workout time" />
+  <input type="text" ng-model="reps" placeholder="reps total" />
+  <p>{{repsPerMinute()}} reps per minute.</p>
+  <button>лифт</button>
+</form>
+</body>
 </html>
