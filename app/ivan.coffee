@@ -1,33 +1,47 @@
 ivan = angular.module('ivan', [])
 
-ivan.controller('timer', ($scope, $element, $timeout) ->
+ivan.controller 'timer', ($scope, $interval) ->
 
-  # TODO 
-  #   store below values in cookies
-  #   beeper
-  #   timer w/ two timeouts (one for rep tick and one for countdown display)
-  #   custom controls
+  # TODO FEATURES
+  # count down to time out
+  # work out count down (seconds)
+  # rep timer count down (somehow)
+  # beep on rep
+  # beep on hand change
+  # progress bar somehow
+  # fin workout screen
+  #
+  # TODO POLISH
+  # ivan fade in out
+  # count down fade in out
+  # select diff sounds
+  # graphics/fonts/colors
+  # fancy pants progress bar
 
-  $scope.countdown = 3
-  $scope.time = '5:00'
-  $scope.reps = 50
+  $scope.defaults =
+    countdown: 10
+    minutes: 10
+    reps: 75
+    switch: false
 
-  $scope.repsPerMinute = ->
-    parseFloat($scope.reps) / timeInMinutes()
+  $scope.mode = 'setup'
 
-  timeInMinutes = () ->
-    [m, s] = $scope.time.split(':')
-    [m, s] = [parseInt(m), parseInt(s)]
-    m + (s/60)
+  $scope.secondsPerRep = ->
+    ($scope.defaults.minutes*60)/$scope.defaults.reps
 
-  timeInSeconds = () ->
-    [m, s] = $scope.time.split(':')
-    [m, s] = [parseInt(m), parseInt(s)]
-    (m*60) + s
+  $scope.workout = ->
+    console.log('wat')
+    $scope.mode = 'workout'
 
-  secondsPerRep = () ->
-    timeInSeconds() / parseFloat($scope.reps)
+    $scope.state =
+      secondsLeft: $scope.defaults.minutes * 60
+      currentRep: 0
 
-  $scope.begin = ->
-    console.log(timeInSeconds(), secondsPerRep())
-)
+    updateSeconds = ->
+      $scope.state.secondsLeft--
+
+    updateReps = ->
+      $scope.state.currentRep++
+
+    secondsInterval = $interval(updateSeconds, 1000)
+    repsInterval = $interval(updateReps, $scope.secondsPerRep()*1000)
