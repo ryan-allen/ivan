@@ -1,0 +1,51 @@
+<!doctype html>
+<html ng-app="ivan">
+<head>
+<script src="app.js"></script>
+<style>
+input[type=number], button {
+  display: block;
+}
+.progress {
+  width: 300px;
+  background-color: black;
+  height: 20px;
+  width: 0px;
+}
+</style>
+<title>ivaи</title>
+</head>
+<body ng-controller="timer">
+<h1>ivaи</h1>
+<div ng-show="mode == 'setup'">
+  <form ng-submit="countdown()">
+    <label>countdown</label>
+    <input type="number" ng-model="defaults.countdown" placeholder="countdown" />
+    <label>workout time</label>
+    <input type="number" ng-model="defaults.minutes" placeholder="workout time" />
+    <label>total reps</label>
+    <input type="number" ng-model="defaults.reps" placeholder="reps total" />
+    <input id="switch" type="checkbox" ng-model="defaults.switch" />
+    <label for="switch">switch hands halfway</label>
+    <p>{{secondsPerRep()}} seconds per rep.</p>
+    <button>лифт</button>
+  </form>
+</div>
+<div ng-show="mode == 'countdown'">
+  <div>get ready, starting in {{state.countdown}}</div>
+</div>
+<div ng-show="mode == 'workout'">
+  <div>seconds left {{state.secondsLeft}}</div>
+  <div>current rep {{state.currentRep}}</div>
+  <div class="progress"></div>
+</div>
+<div ng-show="mode == 'finished'">
+  <div>you done</div>
+  <button ng-click="mode = 'setup'">ivan proud</button>
+</div>
+<audio src="countdown.mp3" preload />
+<audio src="finished.wav" preload />
+<audio src="rep.mp3" preload />
+<audio src="swap.mp3" preload />
+</body>
+</html>

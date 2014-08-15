@@ -1,0 +1,41 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400);
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1.hide {
+  transition: opacity 0.5s;
+  opacity: 0.0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30%;
+  font-size: 900%;
+  color: #888;
+}
+
+.progress {
+  margin: 0 auto;
+  width: 50%;
+  height: 10%;
+}
+
+.progress.container {
+  border-bottom: 1px dashed #999;
+}
+
+.progress.bar {
+  width: 1%;
+  height: 100% ;
+  background-color: #eee;
+  margin: 0;
+}
+
+.progress.bar.go {
+  transition: width 1.232s;
+  width: 100%;
+}
+
+/*# sourceMappingURL=app.css.map*/
